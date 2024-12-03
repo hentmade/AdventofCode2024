@@ -34,8 +34,8 @@ public class Start {
     }
 
     private void separateMulExpressions(){
-        //String regex = "mul\\(([1-9][0-9]{0,2}),([1-9][0-9]{0,2})\\)";
-        String regex = "(mul\\(([1-9][0-9]{0,2}),([1-9][0-9]{0,2})\\))|(do\\(\\))|(don't\\(\\))";
+        //String regex = "mul\\(\d{1,3},\d{1,3}\\)";
+        String regex = "(mul\\(\\d{1,3},\\d{1,3}\\))|(do\\(\\))|(don't\\(\\))";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
         while(matcher.find()){
@@ -44,7 +44,7 @@ public class Start {
     }
 
     private void calculateResult(){
-        String regex = "[1-9][0-9]{0,2}";
+        String regex = "\\d{1,3}";
         Pattern pattern = Pattern.compile(regex);
         ArrayList<Integer> factors = new ArrayList<>();
         boolean validMul = true;
