@@ -1,4 +1,5 @@
 public class Start {
+    private static long startTime;
     public Start(){
         //part 1:
         //Antinodes1 an = new Antinodes1();
@@ -10,9 +11,11 @@ public class Start {
         an.countAntinodes();
         an.calculateResult();
         System.out.println("antinodes = " + an.getResult());
+        System.out.println("time: " + (System.currentTimeMillis() - startTime));
     }
 
     public static void main(String[] args) {
+        startTime = System.currentTimeMillis();
         new Start();
     }
 }
