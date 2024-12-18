@@ -73,18 +73,19 @@ public class ModelPart1 {
                         examineNeighbors(neighbor, plantarea);
                     }
                 }else { //neighbor is other type
-                    if(dir.equals(directions.get(0)) && !plant.hasFenceEast()) plant.setHasFenceEast(true);
-                    if(dir.equals(directions.get(1)) && !plant.hasFenceSouth()) plant.setHasFenceSouth(true);
-                    if(dir.equals(directions.get(2)) && !plant.hasFenceWest()) plant.setHasFenceWest(true);
-                    if(dir.equals(directions.get(3)) && !plant.hasFenceNorth()) plant.setHasFenceNorth(true);
+                    setFence(plant, dir);
                 }
             }else{ //neighbor is not inside Map
-                if(dir.equals(directions.get(0)) && !plant.hasFenceEast()) plant.setHasFenceEast(true);
-                if(dir.equals(directions.get(1)) && !plant.hasFenceSouth()) plant.setHasFenceSouth(true);
-                if(dir.equals(directions.get(2)) && !plant.hasFenceWest()) plant.setHasFenceWest(true);
-                if(dir.equals(directions.get(3)) && !plant.hasFenceNorth()) plant.setHasFenceNorth(true);
+                setFence(plant, dir);
             }
         }
+    }
+
+    private void setFence(Plant plant, Vector direction){
+        if(direction.equals(directions.get(0)) && !plant.hasFenceEast()) plant.setHasFenceEast(true);
+        if(direction.equals(directions.get(1)) && !plant.hasFenceSouth()) plant.setHasFenceSouth(true);
+        if(direction.equals(directions.get(2)) && !plant.hasFenceWest()) plant.setHasFenceWest(true);
+        if(direction.equals(directions.get(3)) && !plant.hasFenceNorth()) plant.setHasFenceNorth(true);
     }
 
     public void calculateResult(){

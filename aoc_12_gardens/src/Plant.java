@@ -3,10 +3,6 @@ public class Plant {
     private Vector position;
     private boolean plantareaAssigned;
     private boolean[] fences;
-    private boolean hasFenceNorth;
-    private boolean hasFenceEast;
-    private boolean hasFenceSouth;
-    private boolean hasFenceWest;
 
     public Plant(Character type, Vector position){
         this.type = type;
@@ -17,10 +13,6 @@ public class Plant {
         fences[1] = false; //east
         fences[2] = false; //south
         fences[3] = false; //west
-        setHasFenceNorth(false);
-        setHasFenceEast(false);
-        setHasFenceSouth(false);
-        setHasFenceWest(false);
     }
 
     public Character getType() {
@@ -48,38 +40,34 @@ public class Plant {
     }
 
     public boolean hasFenceNorth() {
-        return hasFenceNorth;
+        return fences[0];
     }
 
     public boolean hasFenceEast() {
-        return hasFenceEast;
+        return fences[1];
     }
 
     public boolean hasFenceSouth() {
-        return hasFenceSouth;
+        return fences[2];
     }
 
     public boolean hasFenceWest() {
-        return hasFenceWest;
+        return fences[3];
     }
 
     public void setHasFenceNorth(boolean hasFenceNorth) {
-        this.hasFenceNorth = hasFenceNorth;
         fences[0] = hasFenceNorth;
     }
 
     public void setHasFenceEast(boolean hasFenceEast) {
-        this.hasFenceEast = hasFenceEast;
         fences[1] = hasFenceEast;
     }
 
     public void setHasFenceSouth(boolean hasFenceSouth) {
-        this.hasFenceSouth = hasFenceSouth;
         fences[2] = hasFenceSouth;
     }
 
     public void setHasFenceWest(boolean hasFenceWest) {
-        this.hasFenceWest = hasFenceWest;
         fences[3] = hasFenceWest;
     }
 
