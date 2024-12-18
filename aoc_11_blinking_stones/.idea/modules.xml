@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/aoc_13_claw_machine.iml" filepath="$PROJECT_DIR$/aoc_13_claw_machine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aoc_11_blinking_stones.iml" filepath="$PROJECT_DIR$/aoc_11_blinking_stones.iml" />
     </modules>
   </component>
 </project>

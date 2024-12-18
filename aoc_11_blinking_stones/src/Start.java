@@ -2,12 +2,12 @@ public class Start {
     private static long startTime;
 
     public Start(){
-        Model1 model = new Model1();
+        Model model = new ModelPart1();
 
         model.readInput("input.txt");
-        //TODO
+        model.calculateResult(25);
 
-        System.out.println("score-sum = " + model.getResult());
+        System.out.println("result = " + model.getResult());
         System.out.println("time: " + (System.currentTimeMillis() - startTime));
     }
 
