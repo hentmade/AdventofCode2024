@@ -2,14 +2,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Model {
     private long result;
-    protected ArrayList<Stone> stones;
+    protected HashMap<Long, Long> stones;   //stone, occurence
 
     public Model(){
         result = 0;
-        stones = new ArrayList<>();
+        stones = new HashMap<>();
     }
 
     public void readInput(String filename){
@@ -20,7 +21,10 @@ public abstract class Model {
             for(lineCount = 0; (line = reader.readLine()) != null; lineCount++){
                 String[] tmp = line.split(" ");
                 for(String s : tmp){
-                    stones.add(new Stone(Long.parseLong(s)));
+                    Long actValue = stones.putIfAbsent(Long.parseLong(s), 1L);
+                    if(actValue != null){
+                        stones.put(Long.parseLong(s), actValue+1);
+                    }
                 }
             }
             reader.close();

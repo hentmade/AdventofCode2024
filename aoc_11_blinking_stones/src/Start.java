@@ -5,7 +5,7 @@ public class Start {
         Model model = new ModelPart1();
 
         model.readInput("input.txt");
-        model.calculateResult(25);
+        model.calculateResult(75);
 
         System.out.println("result = " + model.getResult());
         System.out.println("time: " + (System.currentTimeMillis() - startTime));

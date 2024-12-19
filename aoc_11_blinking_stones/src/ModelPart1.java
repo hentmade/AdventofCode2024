@@ -1,3 +1,6 @@
+import java.util.AbstractMap;
+import java.util.HashMap;
+
 public class ModelPart1 extends Model{
     private final int FACTOR = 2024;
 
@@ -10,33 +13,58 @@ public class ModelPart1 extends Model{
         for(int i = 0; i < count; ++i){
             blink();
         }
-        setResult(stones.size());
+
+        long result = 0;
+        for(Long stone : stones.values()){
+            result += stone;
+        }
+        setResult(result);
     }
 
     private void blink(){
-        for(int i = 0; i < stones.size(); ++i){
-            long value = stones.get(i).getValue();
-            if(value == 0){
-                stones.get(i).setValue(1);
+        HashMap<Long, Long> stonesToExamine= new HashMap<>(stones);
+
+        for(Long stone : stonesToExamine.keySet()){
+            Long occurence = stonesToExamine.get(stone);
+            if(stone == 0){
+                // 0 --> 1
+                AbstractMap.SimpleEntry<Long, Long> tmp = addStoneToMap(1L, occurence);
+                if(tmp != null) stones.put(tmp.getKey(), tmp.getValue());
+                stones.replace(stone, stones.get(stone) - occurence);
             }
-            else if(hasEvenDigits(value)){
-                Stone[] dividedStones = divideStone(stones.get(i));
-                stones.set(i, dividedStones[0]);
-                stones.add(i+1, dividedStones[1]);
-                i++;
+            else if(hasEvenDigits(stone)){
+                // divide
+                Long[] dividedStone = divideStone(stone);
+                AbstractMap.SimpleEntry<Long, Long> tmp = addStoneToMap(dividedStone[0], occurence);
+                if(tmp != null) stones.put(tmp.getKey(), tmp.getValue());
+                tmp = addStoneToMap(dividedStone[1], occurence);
+                if(tmp != null) stones.put(tmp.getKey(), tmp.getValue());
+                stones.replace(stone, stones.get(stone) - occurence);
             }
             else{
-                stones.get(i).setValue(value * FACTOR);
+                // multiply with factor
+                Long newStone = stone * FACTOR;
+                AbstractMap.SimpleEntry<Long, Long> tmp = addStoneToMap(newStone, occurence);
+                if(tmp != null) stones.put(tmp.getKey(), tmp.getValue());
+                stones.replace(stone, stones.get(stone) - occurence);
             }
         }
     }
 
-    private Stone[] divideStone(Stone stone){
-        long value = stone.getValue();
-        Stone[] dividedStones = new Stone[2];
-        long denominator = (long)Math.pow(10, getDigitCount(value)/2);
-        dividedStones[0] = new Stone(value / denominator);
-        dividedStones[1] = new Stone(value - (dividedStones[0].getValue() * denominator));
+    private AbstractMap.SimpleEntry<Long, Long> addStoneToMap(Long stone, Long occurence){
+        if(stones.containsKey(stone)){
+            stones.replace(stone, (stones.get(stone) + occurence));
+            return null;
+        }else{
+            return new AbstractMap.SimpleEntry<>(stone, occurence);
+        }
+    }
+
+    private Long[] divideStone(Long stone){
+        Long[] dividedStones = new Long[2];
+        long denominator = (long)Math.pow(10, getDigitCount(stone)/2);
+        dividedStones[0] = (stone / denominator);
+        dividedStones[1] = (stone - (dividedStones[0] * denominator));
         return dividedStones;
     }
 
