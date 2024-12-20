@@ -7,7 +7,7 @@ public class Start {
         model.readInput("input.txt");
         //TODO
 
-        System.out.println("score-sum = " + model.getResult());
+        System.out.println("result = " + model.getResult());
         System.out.println("time: " + (System.currentTimeMillis() - startTime));
     }
 
